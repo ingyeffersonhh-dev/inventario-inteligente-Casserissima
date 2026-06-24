@@ -1,0 +1,78 @@
+# ============================================================
+# CASSERISISSIMA 2.0 — .gitignore
+# Full-stack: Python (FastAPI + ML) + Next.js (TypeScript)
+# ============================================================
+
+# ── Python ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ── Virtual Environments ─────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── ML Models (regenerated via benchmark) ────────────────────
+data/models/*.joblib
+
+# ── Database (loaded from CSV on startup) ────────────────────
+*.db
+*.db-shm
+*.db-wal
+
+# ── Environment Variables ────────────────────────────────────
+.env
+!.env.example
+
+# ── Node.js / Next.js ────────────────────────────────────────
+node_modules/
+.next/
+out/
+.vercel
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.tsbuildinfo
+next-env.d.ts
+
+# ── IDE & OS ─────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Dev Tools & AI Context ───────────────────────────────────
+.agents/
+.gemini/
+.ai-context/
+.atl/
+skills-lock.json
+
+# ── Dev Artifacts (temp scripts, outputs, binaries) ──────────
+*.exe
+src/minitest.py
+src/test2.py
+src/check_db.py
+src/clean_db.py
+src/reseed.py
+src/run_test.bat
+src/test_predictor.py
+src/minitest_result.txt
+src/test_resultado.txt
+src/test_output.txt
+src/imports_check.txt
+
+# ── Jupyter Notebook Checkpoints ─────────────────────────────
+.ipynb_checkpoints/
