@@ -61,7 +61,6 @@ export const predictionsApi = {
       method: 'POST',
       body: JSON.stringify({ horizon_days: horizon, service_level: 0.97, force_retrain: false }),
     }),
-  forecasts: (productId: string) => apiFetch<any>(`/forecasts/${productId}`),
   updatePrice: (productId: string, price: number, cost?: number) =>
     apiFetch<any>(`/products/${productId}`, {
       method: 'PUT',

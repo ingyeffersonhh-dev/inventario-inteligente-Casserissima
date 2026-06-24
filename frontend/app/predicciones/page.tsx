@@ -4,6 +4,7 @@ import AppShell from "@/components/layout/AppShell";
 import ForecastChart from "@/components/predictions/ForecastChart";
 import InsightsPanel from "@/components/predictions/InsightsPanel";
 import { predictionsApi, insightsApi, scenariosApi } from "@/lib/api";
+import { useScenario } from "@/lib/scenarioContext";
 import type { Product, PredictionResult, Insight } from "@/lib/types";
 import { motion, AnimatePresence } from "framer-motion";
 import { BrainCircuit, RefreshCw } from "lucide-react";
@@ -45,6 +46,7 @@ export default function PrediccionesPage() {
   const [error, setError]                      = useState<string | null>(null);
   const [horizon, setHorizon]                  = useState(14);
   const [activeScenario, setActiveScenario]    = useState(1);
+  const { refreshKey }                          = useScenario();
 
   useEffect(() => {
     predictionsApi.products().then((d) => {
@@ -53,7 +55,7 @@ export default function PrediccionesPage() {
     });
     insightsApi.get().then((d) => setInsights(d.insights || []));
     scenariosApi.getActive().then((d) => setActiveScenario(d.id));
-  }, []);
+  }, [refreshKey]);
 
   const handlePredict = async () => {
     if (!selectedId) return;

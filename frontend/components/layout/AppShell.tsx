@@ -5,6 +5,7 @@ import ScenarioSwitcher from "@/components/layout/ScenarioSwitcher";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { ScenarioProvider, useScenario } from "@/lib/scenarioContext";
 
 interface AppShellProps {
   children: ReactNode;
@@ -49,6 +50,7 @@ function ApiStatusDot() {
 
 function ShellInner({ children, title, subtitle }: AppShellProps) {
   const router = useRouter();
+  const { triggerRefresh } = useScenario();
 
   return (
     <div className="flex min-h-screen" style={{ background: "var(--bg-base)" }}>
@@ -81,7 +83,7 @@ function ShellInner({ children, title, subtitle }: AppShellProps) {
             <ApiStatusDot />
             <div style={{ width: "1px", height: "20px", background: "var(--bg-border)" }} />
             <ThemeToggle />
-            <ScenarioSwitcher onScenarioChange={() => router.refresh()} />
+            <ScenarioSwitcher onScenarioChange={() => { triggerRefresh(); router.refresh(); }} />
           </div>
         </header>
 
@@ -103,7 +105,9 @@ function ShellInner({ children, title, subtitle }: AppShellProps) {
 export default function AppShell(props: AppShellProps) {
   return (
     <SidebarProvider>
-      <ShellInner {...props} />
+      <ScenarioProvider>
+        <ShellInner {...props} />
+      </ScenarioProvider>
     </SidebarProvider>
   );
 }

@@ -7,6 +7,7 @@ import ProductRanking from "@/components/dashboard/ProductRanking";
 import StockAlerts from "@/components/dashboard/StockAlerts";
 import InsightsPanel from "@/components/predictions/InsightsPanel";
 import { dashboardApi, insightsApi } from "@/lib/api";
+import { useScenario } from "@/lib/scenarioContext";
 import type { DashboardKPIs, SalesTrendItem, TopProductItem, IngredientStatus, Insight } from "@/lib/types";
 import { motion } from "framer-motion";
 import { RefreshCw } from "lucide-react";
@@ -20,6 +21,7 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState<string | null>(null);
   const [key, setKey]         = useState(0);
+  const { refreshKey }        = useScenario();
 
   useEffect(() => {
     setLoading(true);
@@ -40,7 +42,7 @@ export default function DashboardPage() {
       })
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
-  }, [key]);
+  }, [key, refreshKey]);
 
   const scenarioColor = kpis?.scenario?.color || "var(--accent-gold)";
 
