@@ -1,5 +1,5 @@
 <h1 align="center">
-  🍰 CASSERISISSIMA 2.0
+  🍰 CASSERISISSIMA 
 </h1>
 
 <h3 align="center">
