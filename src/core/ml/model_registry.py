@@ -117,10 +117,11 @@ def load_active_model(product_id: str, db: Session) -> Optional[tuple[Pipeline, 
     logger.info(f"Modelo cargado: {record.version_tag}")
 
     return pipeline, {
-        "version_tag": record.version_tag,
-        "mape_val":    record.mape_val,
-        "rmse_val":    record.rmse_val,
-        "mae_val":     record.mae_val,
-        "training_rows": record.training_rows,
-        "trained_at":  record.trained_at.isoformat() if record.trained_at else None,
+        "version_tag":     record.version_tag,
+        "mape_val":        record.mape_val,
+        "rmse_val":        record.rmse_val,
+        "mae_val":         record.mae_val,
+        "training_rows":   record.training_rows,
+        "hyperparameters": record.hyperparameters,
+        "trained_at":      record.trained_at.isoformat() if record.trained_at else None,
     }

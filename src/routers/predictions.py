@@ -22,7 +22,7 @@ from core.ml.model_trainer import train_product_model
 from core.ml.model_registry import register_model, load_active_model
 from core.ml.pipeline import predict_with_intervals
 from core.operations_research.newsvendor import calculate_critical_ratio, newsvendor_optimal_quantity
-from core.operations_research.reorder_point import calculate_reorder_point, evaluate_reorder_urgency
+from core.operations_research.reorder_point import calculate_reorder_point
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -166,8 +166,8 @@ def predict_demand(product_id: str, req: PredictRequest, db: Session = Depends(g
         rolling_mean_7  = float(np.mean(last_7))
         rolling_mean_14 = float(np.mean(last_14))
         rolling_mean_21 = float(np.mean(last_21))
-        rolling_std_7   = float(np.std(last_7))  if len(last_7) > 1 else 0.0
-        rolling_std_14  = float(np.std(last_14)) if len(last_14) > 1 else 0.0
+        rolling_std_7   = float(np.std(last_7, ddof=1))  if len(last_7) > 1 else 0.0
+        rolling_std_14  = float(np.std(last_14, ddof=1)) if len(last_14) > 1 else 0.0
 
         # EWM approximation
         ewm_7 = float(pd.Series(last_7).ewm(span=7, min_periods=1).mean().iloc[-1])

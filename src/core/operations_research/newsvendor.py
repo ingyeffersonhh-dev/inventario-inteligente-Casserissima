@@ -40,21 +40,3 @@ def newsvendor_optimal_quantity(
         "mu_demand":           round(mu_demand, 2),
         "sigma_demand":        round(sigma_demand, 2),
     }
-
-
-def newsvendor_from_quantile(
-    tree_predictions: np.ndarray,
-    critical_ratio: float,
-    min_order: int = 1,
-) -> dict:
-    """Versión no-paramétrica usando distribución empírica del Random Forest."""
-    q_star = float(np.quantile(tree_predictions, critical_ratio))
-    q_star = max(float(min_order), q_star)
-    return {
-        "q_star":              round(q_star, 2),
-        "q_star_rounded":      int(np.ceil(q_star)),
-        "critical_ratio":      round(critical_ratio, 4),
-        "mu_demand":           round(float(np.mean(tree_predictions)), 2),
-        "sigma_demand":        round(float(np.std(tree_predictions)), 2),
-        "service_level_at_q":  round(float(np.mean(tree_predictions <= q_star)), 4),
-    }

@@ -224,20 +224,3 @@ def build_features(
     logger.debug(f"[FeatureEng] Filas tras dropna: {len(df)}/{before}")
 
     return df.reset_index()
-
-
-def prepare_train_test(
-    df_features: pd.DataFrame,
-    target_col: str = "quantity_sold",
-    test_size: float = 0.2,
-) -> tuple[pd.DataFrame, pd.Series, pd.DataFrame, pd.Series]:
-    """Divide datos en train/test respetando orden temporal."""
-    df = df_features.copy()
-    split_idx = int(len(df) * (1 - test_size))
-
-    X_train = df.iloc[:split_idx][FEATURE_COLUMNS]
-    y_train = df.iloc[:split_idx][target_col]
-    X_test  = df.iloc[split_idx:][FEATURE_COLUMNS]
-    y_test  = df.iloc[split_idx:][target_col]
-
-    return X_train, y_train, X_test, y_test

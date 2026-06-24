@@ -53,17 +53,6 @@ LGBM_PARAM_SPACE = {
 }
 
 
-def _ewm_fallback_predict(sales_df: pd.DataFrame, horizon: int, product_sku: str) -> list[float]:
-    """
-    Fallback cuando hay muy pocos datos: usa Exponential Weighted Mean.
-    Devuelve una lista de predicciones para los próximos 'horizon' días.
-    """
-    logger.warning(f"[{product_sku}] Usando fallback EWM (datos insuficientes para RF).")
-    qty = pd.Series(sales_df["quantity_sold"].values, dtype=float)
-    ewm_val = float(qty.ewm(span=min(14, len(qty)), min_periods=1).mean().iloc[-1])
-    return [max(0.0, round(ewm_val, 2))] * horizon
-
-
 def _assess_data_quality(y: pd.Series) -> dict:
     """
     Evalúa la calidad de los datos del target para decidir qué pipeline usar.
@@ -183,11 +172,16 @@ def _train_with_search(
     best_pipeline = search.best_estimator_
 
     # Calcular métricas en escala original mediante CV manual
+    best_params = {k.replace("model__", ""): v for k, v in search.best_params_.items()}
     cv_metrics = []
     for train_idx, val_idx in tscv.split(X):
-        X_val = X.iloc[val_idx]
-        y_val = y.iloc[val_idx]
-        y_pred = best_pipeline.predict(X_val)
+        X_tr, y_tr = X.iloc[train_idx], y_train.iloc[train_idx]
+        X_val, y_val = X.iloc[val_idx], y.iloc[val_idx]
+
+        fold_pipeline = pipeline_builder(**best_params)
+        fold_pipeline.fit(X_tr, y_tr)
+
+        y_pred = fold_pipeline.predict(X_val)
         if use_log:
             y_pred = np.expm1(y_pred)
         y_pred = np.maximum(0, y_pred)
@@ -198,8 +192,6 @@ def _train_with_search(
         "rmse": float(np.mean([m["rmse"] for m in cv_metrics])),
         "mae":  float(np.mean([m["mae"]  for m in cv_metrics])),
     }
-
-    best_params = {k.replace("model__", ""): v for k, v in search.best_params_.items()}
 
     return best_pipeline, avg_metrics, best_params
 
