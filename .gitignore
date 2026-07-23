@@ -79,5 +79,17 @@ scratch/
 temp-matplotlib-skill/
 extracted_*.txt
 
+# ── Tesis / docs académicas (no parte del sistema) ─────────
+docs/
+notebooks/
+imagenes_tesis/
+*.docx
+*.pdf
+guion-presentacion.md
+plan-cap4.md
+plan-tesis.md
+task.md
+Analisis_Imagenes_y_Costo_Beneficio.md
+
 # ── Jupyter Notebook Checkpoints ─────────────────────────────
 .ipynb_checkpoints/
