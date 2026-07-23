@@ -81,7 +81,6 @@ extracted_*.txt
 
 # ── Tesis / docs académicas (no parte del sistema) ─────────
 docs/
-notebooks/
 imagenes_tesis/
 *.docx
 *.pdf
