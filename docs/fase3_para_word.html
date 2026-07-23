@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase III - Cuadro para Word</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            padding: 40px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #e0e0e0;
+            font-weight: bold;
+            text-align: center;
+        }
+        .caption {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .source {
+            font-size: 10pt;
+            margin-top: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 style="font-size: 14pt; font-weight: bold; margin-bottom: 10px;">3.7.3 Fase III: Desarrollo del Sistema Predictivo</h2>
+        <p style="text-align: justify; margin-bottom: 15px;">La tercera fase de la investigación se centró en la materialización operativa del motor predictivo mediante la construcción de un sistema integral de información, diseñado para automatizar las decisiones de reabastecimiento en la Pastelería Casserissima. El objetivo fundamental fue transformar las salidas analíticas del modelo de Machine Learning (Random Forest) en alertas gerenciales procesables, garantizando una gestión de inventarios proactiva y minimizando el riesgo de caducidad.</p>
+
+        <p style="text-align: justify; margin-bottom: 15px;">Para cumplir con este propósito, la solución se estructuró bajo una arquitectura lógica Cliente-Servidor <strong>(ver Figura X: Arquitectura Lógica)</strong>. El <em>Backend</em> fue desarrollado en Python utilizando el framework FastAPI, el cual aloja el motor predictivo, expone las interfaces de programación de aplicaciones (API REST) y gestiona la lógica de negocio. Por su parte, el <em>Frontend</em> se construyó con Next.js (React y TypeScript), proporcionando una capa de presentación dinámica orientada a la experiencia de usuario.</p>
+
+        <!-- ESPACIO PARA FIGURA DE ARQUITECTURA -->
+        <div style="text-align: center; margin: 30px 0; padding: 20px; border: 2px dashed #94a3b8; background-color: #f8fafc;">
+            <p style="font-weight: bold; color: #475569;">[ PEGUE AQUÍ: Figura X - Arquitectura Lógica ]</p>
+            <p style="font-size: 10pt; color: #64748b;">(Exportar desde arquitectura_logica.excalidraw)</p>
+        </div>
+
+        <p style="text-align: justify; margin-bottom: 15px;">La persistencia del historial de predicciones y métricas por producto se garantizó mediante una base de datos relacional construida en SQLite, gestionada a través del ORM SQLAlchemy. La estructura de datos <strong>(ver Figura X: Diagrama Entidad-Relación)</strong> se compone de entidades transaccionales y de control, permitiendo registrar la trazabilidad exacta desde la transacción de venta histórica hasta el pronóstico de demanda futuro y su respectivo margen de error.</p>
+
+        <!-- ESPACIO PARA FIGURA ER -->
+        <div style="text-align: center; margin: 30px 0; padding: 20px; border: 2px dashed #94a3b8; background-color: #f8fafc;">
+            <p style="font-weight: bold; color: #475569;">[ PEGUE AQUÍ: Figura X - Diagrama Entidad-Relación ]</p>
+            <p style="font-size: 10pt; color: #64748b;">(Exportar desde diagrama_er.excalidraw)</p>
+        </div>
+
+        <p style="text-align: justify; margin-bottom: 15px;">El núcleo decisional del sistema tecnológico radica en la implementación algorítmica del Punto de Reorden Evolutivo, o ROP(t). A diferencia de los enfoques estáticos tradicionales de control de inventarios, la lógica diseñada en esta fase integra directamente el rendimiento predictivo del algoritmo Random Forest. Como se detalla en el <strong>Cuadro 4 (Parámetros Matemáticos del Punto de Reorden Evolutivo)</strong>, el sistema utiliza el Error Absoluto Porcentual Medio (MAPE) como un factor de penalización multiplicativo sobre la desviación estándar de la demanda, y el Error Cuadrático Medio (RMSE) como un margen de seguridad aditivo durante el tiempo de entrega.</p>
+
+        <p style="text-align: justify; margin-bottom: 15px;">Este flujo de cálculo automatizado <strong>(ver Figura X: Flujo del ROP Evolutivo)</strong> permite que el inventario de seguridad se expanda o se contraiga dinámicamente: si el modelo predictivo detecta una alta volatilidad y aumenta su margen de error empírico, el sistema exige un mayor stock de protección; por el contrario, frente a demandas estables y predicciones precisas, el sistema libera capital inmovilizado.</p>
+
+        <!-- ESPACIO PARA FIGURA FLUJO ROP -->
+        <div style="text-align: center; margin: 30px 0; padding: 20px; border: 2px dashed #94a3b8; background-color: #f8fafc;">
+            <p style="font-weight: bold; color: #475569;">[ PEGUE AQUÍ: Figura X - Flujo del ROP Evolutivo ]</p>
+            <p style="font-size: 10pt; color: #64748b;">(Exportar desde flujo_rop_evolutivo.excalidraw)</p>
+        </div>
+
+        <p style="text-align: justify; margin-bottom: 25px;">Finalmente, toda la infraestructura de datos y cálculos matemáticos converge en el tablero de control gerencial <strong>(ver Figura X: Captura del Tablero de Control)</strong>. Esta interfaz gráfica fue diseñada para interpretar en tiempo real los niveles de stock actual contrastados contra el ROP(t) de cada producto, traduciendo la complejidad del modelo en un panel unificado de alertas automáticas escalonadas (Crítico, Alto, Normal, Sin Alerta). Esto permite a la gerencia ejecutar órdenes de producción o compras estrictamente fundamentadas en el comportamiento matemático de la demanda, cumpliendo el objetivo principal del sistema.</p>
+
+        <!-- ESPACIO PARA IMAGEN DEL DASHBOARD -->
+        <div style="text-align: center; margin: 30px 0; padding: 20px; border: 2px dashed #94a3b8; background-color: #f8fafc;">
+            <img src="images/dashboard_real.png" alt="Dashboard Casserissima" style="max-width: 100%; height: auto; border: 1px solid #ccc; margin-bottom: 10px;">
+            <p style="font-weight: bold; color: #475569;">Figura X: Interfaz del Tablero de Control Gerencial</p>
+            <p style="font-size: 10pt; color: #64748b;">Fuente: Elaboración propia a partir del sistema en producción (2026).</p>
+        </div>
+        
+        <div class="caption">Cuadro 4: Parámetros Matemáticos del Punto de Reorden Evolutivo (ROP Dinámico)</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Símbolo</th>
+                    <th>Parámetro Operativo</th>
+                    <th>Descripción y Origen en el Sistema</th>
+                    <th>Unidad de Medida</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center;"><strong>μ</strong></td>
+                    <td>Demanda Media Diaria (<code>avg_daily_demand</code>)</td>
+                    <td>Promedio histórico de ventas del producto. Obtenido de la tabla <code>sales_transactions</code> en SQLite.</td>
+                    <td>Unidades físicas (ej. tortas)</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><strong>σ</strong></td>
+                    <td>Desviación Estándar (<code>demand_std_daily</code>)</td>
+                    <td>Mide la volatilidad histórica de la demanda diaria para el producto. Obtenido de la base de datos.</td>
+                    <td>Unidades físicas</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><strong>LT</strong></td>
+                    <td>Tiempo de Entrega (<code>lead_time_days</code>)</td>
+                    <td>Días que tarda el proveedor o el área de producción en reabastecer el inventario una vez generada la orden.</td>
+                    <td>Días</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><strong>MAPE</strong></td>
+                    <td>Error Absoluto Medio Porcentual</td>
+                    <td>Métrica de precisión del modelo predictivo (Random Forest). Se usa como <strong>factor de penalización</strong>: a mayor error predictivo histórico, mayor stock de seguridad (<code>1 + MAPE</code>).</td>
+                    <td>Porcentaje (Adimensional)</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><strong>RMSE</strong></td>
+                    <td>Raíz del Error Cuadrático Medio</td>
+                    <td>Métrica del modelo predictivo que penaliza grandes desviaciones. Actúa como <strong>buffer de seguridad adicional</strong> durante el tiempo de entrega.</td>
+                    <td>Unidades físicas</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><strong>z</strong></td>
+                    <td>Puntaje Zeta (<code>z_score</code>)</td>
+                    <td>Constante estadística derivada de la distribución normal (N~0,1). Para un nivel de servicio deseado del 97%, z = 1.88.</td>
+                    <td>Adimensional</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><strong>SS</strong></td>
+                    <td>Inventario de Seguridad (<code>safety_stock</code>)</td>
+                    <td>Cojín de inventario calculado dinámicamente como: <code>z * [σ * √(LT)] * (1 + MAPE) + √(LT) * RMSE * 0.5</code>.</td>
+                    <td>Unidades físicas</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><strong>ROP(t)</strong></td>
+                    <td>Punto de Reorden Evolutivo</td>
+                    <td>Fórmula final del sistema: Demanda esperada en el tiempo de entrega (<code>μ * LT</code>) más el inventario de seguridad dinámico (<code>SS</code>).</td>
+                    <td>Unidades físicas</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="source">Fuente: Elaboración propia (2026). Basado en Silver, Pyke & Peterson (1998) e implementado en el motor predictivo.</div>
+
+    </div>
+</body>
+</html>

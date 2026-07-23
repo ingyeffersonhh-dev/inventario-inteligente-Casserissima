@@ -74,5 +74,10 @@ src/test_resultado.txt
 src/test_output.txt
 src/imports_check.txt
 
+# ── Temp / scratch ───────────────────────────────────────────
+scratch/
+temp-matplotlib-skill/
+extracted_*.txt
+
 # ── Jupyter Notebook Checkpoints ─────────────────────────────
 .ipynb_checkpoints/

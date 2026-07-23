@@ -92,7 +92,7 @@ export default function DashboardPage() {
             color:      "var(--danger)",
           }}
         >
-          ⚠️ Error al cargar datos: {error}. ¿Está el backend corriendo en localhost:8000?
+          No hay datos disponibles del dashboard.
         </div>
       )}
 

@@ -140,3 +140,88 @@ export interface InsightsResponse {
   };
   insights: Insight[];
 }
+
+// ─── Backtesting / Validación OE4 ────────────────────────────────────────────
+// Mirrors results/backtest_resumen.json verbatim. Note: waste_pct_* and
+// fill_rate_* are fractions (0..1); waste_reduction_pct and mean_waste_reduction_pct
+// are already percentages (e.g. 12.65); mape is a fraction.
+export interface BacktestConfig {
+  scenario_id: number;
+  scenario_name: string;
+  train_window_days: number;
+  horizon: number;
+  retrain_every: number;
+  baseline_k: number;
+  baseline_buffer: number;
+  max_products: number;
+}
+
+export interface BacktestAggregatedMetrics {
+  mape: number;
+  rmse: number;
+  mae: number;
+  n_windows: number;
+  n_predictions: number;
+}
+
+export interface BacktestComparison {
+  waste_pct_system: number;
+  waste_pct_baseline: number;
+  waste_reduction_pct: number;
+  fill_rate_system: number;
+  fill_rate_baseline: number;
+  fill_rate_delta: number;
+}
+
+export interface BacktestProductMetrics {
+  sku: string;
+  name: string;
+  category: string;
+  shelf_life_days: number;
+  aggregated_metrics: BacktestAggregatedMetrics;
+  comparison: BacktestComparison;
+  baseline_params: { k: number; buffer: number };
+  n_days_compared: number;
+  n_windows: number;
+  n_predictions: number;
+}
+
+export interface BacktestAggregated {
+  n_products: number;
+  mean_mae: number;
+  mean_mape: number;
+  mean_rmse: number;
+  mean_waste_pct_system: number;
+  mean_waste_pct_baseline: number;
+  mean_waste_reduction_pct: number;
+  mean_fill_rate_system: number;
+  mean_fill_rate_baseline: number;
+  mean_fill_rate_delta: number;
+}
+
+export interface BacktestProductRow {
+  product_id: string;
+  sku: string;
+  name: string;
+  category: string;
+  shelf_life_days: number;
+  mae: number;
+  mape: number;
+  rmse: number;
+  waste_pct_system: number;
+  waste_pct_baseline: number;
+  waste_reduction_pct: number;
+  fill_rate_system: number;
+  fill_rate_baseline: number;
+  fill_rate_delta: number;
+  n_windows: number;
+  n_predictions: number;
+}
+
+export interface BacktestSummary {
+  config: BacktestConfig;
+  per_product: Record<string, BacktestProductMetrics>;
+  aggregated: BacktestAggregated;
+  aggregated_table: BacktestProductRow[];
+  summary: string;
+}

@@ -1,0 +1,4 @@
+﻿product_id,sku,name,category,shelf_life_days,n_windows,n_predictions,mae,mape,rmse,waste_pct_system,waste_pct_baseline,waste_reduction_pct,fill_rate_system,fill_rate_baseline,fill_rate_delta
+TF-001,TF-3LECHES,3leches,Tortas frías,4,549,7686,0.6287,0.5408,0.7101,0.235483,0.248995,5.4268,0.770279,0.818024,-0.047744
+TF-002,TF-HELADO,Helado Sureño,Tortas frías,4,549,7686,0.5539,0.5622,0.6214,0.218495,0.251553,13.1415,0.793424,0.821685,-0.028261
+TF-003,TF-BESO,Beso de amor,Tortas frías,4,549,7686,0.5283,0.6266,0.609,0.267633,0.331976,19.3818,0.752411,0.72635,0.026062

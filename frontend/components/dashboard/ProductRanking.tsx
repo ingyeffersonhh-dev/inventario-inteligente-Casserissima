@@ -21,7 +21,7 @@ interface ProductRankingProps {
 const formatName = (name: string): string => {
   const mapping: Record<string, string> = {
     "3leches":               "3 Leches",
-    "Helado Sureño":         "Helada Sureño",
+    "Helado Sureño":         "Helado Sureño",
     "Beso de amor":          "Beso de Amor",
     "Parchita":              "Parchita",
     "Dulcemaria":            "Dulcemaría",
@@ -64,6 +64,31 @@ export default function ProductRanking({ products }: ProductRankingProps) {
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  if (!products || products.length === 0) {
+    return (
+      <div className="card flex flex-col justify-between">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3
+              className="text-sm font-semibold tracking-wide"
+              style={{ fontFamily: "var(--font-display)", color: "var(--text-primary)" }}
+            >
+              Top Sabores
+            </h3>
+            <p className="text-[10px] mt-0.5" style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
+              Últimos 30 días
+            </p>
+          </div>
+        </div>
+        <div className="flex-1 flex items-center justify-center py-8">
+          <p className="text-xs" style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
+            Sin datos suficientes
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   let coldIndex = 0;
   let warmIndex = 0;

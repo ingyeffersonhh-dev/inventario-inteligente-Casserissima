@@ -18,6 +18,19 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
+def latest_sale_date(db: Session, scenario_id: int) -> date:
+    """Ancla las ventanas temporales al último día con datos del escenario activo.
+
+    Cae en date.today() si el escenario no tiene filas (escenario recién sembrado).
+    """
+    max_date = (
+        db.query(func.max(SaleTransaction.sale_date))
+        .filter(SaleTransaction.scenario_id == scenario_id)
+        .scalar()
+    )
+    return max_date if max_date is not None else date.today()
+
+
 @router.get("/dashboard/kpis")
 def get_dashboard_kpis(db: Session = Depends(get_db)):
     """
@@ -25,7 +38,7 @@ def get_dashboard_kpis(db: Session = Depends(get_db)):
     Retorna: ingresos, unidades vendidas, torta top, días de datos disponibles.
     """
     scenario_id = get_active_scenario(db)
-    today = date.today()
+    today = latest_sale_date(db, scenario_id)
 
     # Mes actual (desde el día 1)
     month_start = today.replace(day=1)
@@ -131,7 +144,7 @@ def get_sales_trend(
 ):
     """Tendencia de ventas semanales (ingresos + unidades) por las últimas N semanas."""
     scenario_id = get_active_scenario(db)
-    today = date.today()
+    today = latest_sale_date(db, scenario_id)
     start_date = today - timedelta(weeks=weeks)
 
     # Agrupar por semana ISO
@@ -176,7 +189,8 @@ def get_top_products(
 ):
     """Ranking de tortas más vendidas en los últimos N días."""
     scenario_id = get_active_scenario(db)
-    since = date.today() - timedelta(days=days)
+    today = latest_sale_date(db, scenario_id)
+    since = today - timedelta(days=days)
 
     rows = (
         db.query(

@@ -25,7 +25,7 @@ if (Get-Command "py" -ErrorAction SilentlyContinue) {
 # -- Backend ------------------------------------------------------------------
 Write-Host "  [1/3] Iniciando Backend Python (FastAPI)..." -ForegroundColor Cyan
 
-$backendDir = Join-Path $ROOT "backend"
+$backendDir = Join-Path $ROOT "src"
 
 # Copiar .env si no existe
 if (-not (Test-Path "$backendDir\.env")) {

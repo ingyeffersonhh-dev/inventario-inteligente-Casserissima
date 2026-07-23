@@ -1,7 +1,9 @@
 // CASSERIISSIMA 2.0 — API Client
 // Wrapper fetch hacia el backend FastAPI (vía proxy Next.js)
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
+import type { BacktestSummary } from './types';
+
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || '/api/v1';
 
 async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
   const url = `${API_BASE}${path}`;
@@ -71,4 +73,14 @@ export const predictionsApi = {
 // ─── Insights ────────────────────────────────────────────────────────────────
 export const insightsApi = {
   get: () => apiFetch<any>('/insights'),
+};
+
+// ─── Backtesting / Validación OE4 ────────────────────────────────────────────
+// Reads the precomputed results/backtest_resumen.json via the backend.
+export async function getBacktestSummary(): Promise<BacktestSummary> {
+  return apiFetch<BacktestSummary>('/backtest/summary');
+}
+
+export const backtestApi = {
+  getSummary: () => getBacktestSummary(),
 };

@@ -1,0 +1,167 @@
+{
+  "config": {
+    "scenario_id": 2,
+    "scenario_name": "Óptimo",
+    "train_window_days": 180,
+    "horizon": 14,
+    "retrain_every": 7,
+    "baseline_k": 7,
+    "baseline_buffer": 0.1,
+    "max_products": 3
+  },
+  "per_product": {
+    "TF-001": {
+      "sku": "TF-3LECHES",
+      "name": "3leches",
+      "category": "Tortas frías",
+      "shelf_life_days": 4,
+      "aggregated_metrics": {
+        "mape": 0.5408,
+        "rmse": 0.7101,
+        "mae": 0.6287,
+        "n_windows": 549,
+        "n_predictions": 7686
+      },
+      "comparison": {
+        "waste_pct_system": 0.235483,
+        "waste_pct_baseline": 0.248995,
+        "waste_reduction_pct": 5.4268,
+        "fill_rate_system": 0.770279,
+        "fill_rate_baseline": 0.818024,
+        "fill_rate_delta": -0.047744
+      },
+      "baseline_params": {
+        "k": 7,
+        "buffer": 0.1
+      },
+      "n_days_compared": 562,
+      "n_windows": 549,
+      "n_predictions": 7686
+    },
+    "TF-002": {
+      "sku": "TF-HELADO",
+      "name": "Helado Sure\u00f1o",
+      "category": "Tortas frías",
+      "shelf_life_days": 4,
+      "aggregated_metrics": {
+        "mape": 0.5622,
+        "rmse": 0.6214,
+        "mae": 0.5539,
+        "n_windows": 549,
+        "n_predictions": 7686
+      },
+      "comparison": {
+        "waste_pct_system": 0.218495,
+        "waste_pct_baseline": 0.251553,
+        "waste_reduction_pct": 13.1415,
+        "fill_rate_system": 0.793424,
+        "fill_rate_baseline": 0.821685,
+        "fill_rate_delta": -0.028261
+      },
+      "baseline_params": {
+        "k": 7,
+        "buffer": 0.1
+      },
+      "n_days_compared": 562,
+      "n_windows": 549,
+      "n_predictions": 7686
+    },
+    "TF-003": {
+      "sku": "TF-BESO",
+      "name": "Beso de amor",
+      "category": "Tortas frías",
+      "shelf_life_days": 4,
+      "aggregated_metrics": {
+        "mape": 0.6266,
+        "rmse": 0.609,
+        "mae": 0.5283,
+        "n_windows": 549,
+        "n_predictions": 7686
+      },
+      "comparison": {
+        "waste_pct_system": 0.267633,
+        "waste_pct_baseline": 0.331976,
+        "waste_reduction_pct": 19.3818,
+        "fill_rate_system": 0.752411,
+        "fill_rate_baseline": 0.72635,
+        "fill_rate_delta": 0.026062
+      },
+      "baseline_params": {
+        "k": 7,
+        "buffer": 0.1
+      },
+      "n_days_compared": 562,
+      "n_windows": 549,
+      "n_predictions": 7686
+    }
+  },
+  "aggregated": {
+    "n_products": 3,
+    "mean_mae": 0.5702999999999999,
+    "mean_mape": 0.5765333333333333,
+    "mean_rmse": 0.6468333333333333,
+    "mean_waste_pct_system": 0.240537,
+    "mean_waste_pct_baseline": 0.27750800000000003,
+    "mean_waste_reduction_pct": 12.650033333333333,
+    "mean_fill_rate_system": 0.7720380000000001,
+    "mean_fill_rate_baseline": 0.7886863333333333,
+    "mean_fill_rate_delta": -0.016647666666666668
+  },
+  "aggregated_table": [
+    {
+      "product_id": "TF-001",
+      "sku": "TF-3LECHES",
+      "name": "3leches",
+      "category": "Tortas frías",
+      "shelf_life_days": 4,
+      "mae": 0.6287,
+      "mape": 0.5408,
+      "rmse": 0.7101,
+      "waste_pct_system": 0.235483,
+      "waste_pct_baseline": 0.248995,
+      "waste_reduction_pct": 5.4268,
+      "fill_rate_system": 0.770279,
+      "fill_rate_baseline": 0.818024,
+      "fill_rate_delta": -0.047744,
+      "n_windows": 549,
+      "n_predictions": 7686
+    },
+    {
+      "product_id": "TF-002",
+      "sku": "TF-HELADO",
+      "name": "Helado Sure\u00f1o",
+      "category": "Tortas frías",
+      "shelf_life_days": 4,
+      "mae": 0.5539,
+      "mape": 0.5622,
+      "rmse": 0.6214,
+      "waste_pct_system": 0.218495,
+      "waste_pct_baseline": 0.251553,
+      "waste_reduction_pct": 13.1415,
+      "fill_rate_system": 0.793424,
+      "fill_rate_baseline": 0.821685,
+      "fill_rate_delta": -0.028261,
+      "n_windows": 549,
+      "n_predictions": 7686
+    },
+    {
+      "product_id": "TF-003",
+      "sku": "TF-BESO",
+      "name": "Beso de amor",
+      "category": "Tortas frías",
+      "shelf_life_days": 4,
+      "mae": 0.5283,
+      "mape": 0.6266,
+      "rmse": 0.609,
+      "waste_pct_system": 0.267633,
+      "waste_pct_baseline": 0.331976,
+      "waste_reduction_pct": 19.3818,
+      "fill_rate_system": 0.752411,
+      "fill_rate_baseline": 0.72635,
+      "fill_rate_delta": 0.026062,
+      "n_windows": 549,
+      "n_predictions": 7686
+    }
+  ],
+  "summary": "Backtest (escenario 2, 3 productos): MAE medio=0.5703, MAPE medio=0.5765, merma sistema=24.05% vs baseline=27.75% (reducción media 12.65%), fill rate sistema=77.20% vs baseline=78.87%."
+}

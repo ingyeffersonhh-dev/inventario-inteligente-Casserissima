@@ -30,7 +30,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 const formatName = (name: string): string => {
   const mapping: Record<string, string> = {
     "3leches":               "3 Leches Tradicional",
-    "Helado Sureño":         "Torta Helada Sureño",
+    "Helado Sureño":         "Helado Sureño",
     "Beso de amor":          "Torta Beso de Amor",
     "Parchita":              "Torta de Parchita",
     "Dulcemaria":            "Torta Dulcemaría",
