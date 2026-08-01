@@ -19,13 +19,15 @@ venv/
 env/
 ENV/
 
-# ── ML Models (regenerated via benchmark) ────────────────────
-data/models/*.joblib
+# ── ML Models ────────────────────────────────────────────────
+# Los modelos .joblib se incluyen por portabilidad (no regenerados en clon)
 
-# ── Database (loaded from CSV on startup) ────────────────────
+# ── Database ─────────────────────────────────────────────────
+# Solo la DB principal se sube; el resto (backups, shm, wal) se excluyen
 *.db
 *.db-shm
 *.db-wal
+!src/casserisissima.db
 
 # ── Environment Variables ────────────────────────────────────
 .env
