@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { LayoutDashboard, PenLine, BrainCircuit, ChevronLeft, ChevronRight, Receipt, LineChart } from "lucide-react";
+import { LayoutDashboard, PenLine, BrainCircuit, ChevronLeft, ChevronRight, Receipt } from "lucide-react";
 import { createContext, useContext, useState, ReactNode } from "react";
 
 // ── Sidebar collapse context ────────────────────────────────────────────────
@@ -24,7 +24,6 @@ const NAV_ITEMS = [
   { href: "/ingreso",      icon: PenLine,          label: "Ingreso",      sub: "Datos del día" },
   { href: "/cierres",      icon: Receipt,          label: "Cierres",      sub: "Historial y Excel" },
   { href: "/predicciones", icon: BrainCircuit,     label: "Predicciones", sub: "Motor IA" },
-  { href: "/validacion",   icon: LineChart,        label: "Validación",   sub: "Backtesting" },
 ];
 const SCENARIO_DOTS = [
   { color: "#E8A04A", label: "Corto" },

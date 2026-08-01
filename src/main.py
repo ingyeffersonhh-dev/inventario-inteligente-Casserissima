@@ -99,7 +99,7 @@ async def global_exception_handler(request: Request, exc: Exception):
     )
 
 # ── Routers ───────────────────────────────────────────────────────────────────
-from routers import scenarios, dashboard, sales, inventory, predictions, insights, backtest  # noqa
+from routers import scenarios, dashboard, sales, inventory, predictions, insights  # noqa
 
 PREFIX = "/api/v1"
 app.include_router(scenarios.router,   prefix=PREFIX, tags=["Escenarios"])
@@ -108,7 +108,6 @@ app.include_router(sales.router,       prefix=PREFIX, tags=["Ventas"])
 app.include_router(inventory.router,   prefix=PREFIX, tags=["Inventario"])
 app.include_router(predictions.router, prefix=PREFIX, tags=["Predicciones"])
 app.include_router(insights.router,    prefix=PREFIX, tags=["Insights IA"])
-app.include_router(backtest.router,    prefix=PREFIX, tags=["Validación"])
 
 
 # Lifespan define el inicio y apagado, el código del seed está arriba.
