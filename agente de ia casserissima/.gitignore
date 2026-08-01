@@ -1,0 +1,45 @@
+# ============================================================
+# CASSERISISSIMA 2.0 — Agente de IA (LangGraph + Telegram)
+# ============================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment Variables (CREDENCIALES — NUNCA commitear)
+.env
+
+# IDE & OS
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# AI Tools & Agents
+.agents/
+.ai-context/
+skills-lock.json
+
+# SQLite
+*.db
+*.db-shm
+*.db-wal
+
+# Logs
+*.log

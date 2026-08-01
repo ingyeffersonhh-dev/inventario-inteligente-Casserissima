@@ -68,7 +68,7 @@ Write-Host "  [3/3] Iniciando Agente IA de Telegram y Servidor FastMCP..." -Fore
 # Esperar unos segundos para asegurar que el backend levantó
 Start-Sleep -Seconds 3
 
-$agentDir = "C:\Users\Yefferson\Documents\project\agente de ia casserissima"
+$agentDir = Join-Path $ROOT "agente de ia casserissima"
 
 if (-not (Test-Path "$agentDir\.env")) {
     if (Test-Path "$agentDir\.env.example") {
